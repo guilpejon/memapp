@@ -27,9 +27,10 @@ reddit = praw.Reddit(
 )
 subreddit = reddit.subreddit("ProgrammerHumor")
 
-for submission in subreddit.top(limit=1):
-    pprint.pprint(vars(submission))
-    api_response = client.chat_postMessage(
-        channel="random",
-        text=submission.url
-    )
+for idx, submission in enumerate(subreddit.hot(limit=2)):
+    if(idx==1):
+        pprint.pprint(vars(submission))
+        api_response = client.chat_postMessage(
+            channel="random",
+            text=submission.url
+        )
